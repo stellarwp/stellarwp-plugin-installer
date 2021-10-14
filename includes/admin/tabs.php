@@ -41,11 +41,11 @@ function add_installer_tab( $tabs ) {
 }
 
 /**
- * Side-load our plugins into the API setup.
+ * Set the query args that core will use to look up plugins.
  *
- * @param  array $args  The existing array of args.
+ * @param  array $args  The existing array of args, which in this case is empty.
  *
- * @return array        Our modified array.
+ * @return array        Our arguments to pass on, which we already know will return nothing.
  */
 function load_installer_tab_args( $args ) {
 
@@ -64,8 +64,8 @@ function load_installer_tab_args( $args ) {
  * Load up the plugins we wanna use, bypassing a lot of API stuff.
  *
  * @param  object|WP_Error $response  Response object or WP_Error.
- * @param  string          $action   The type of information being requested from the Plugin Installation API.
- * @param  object          $args     Plugin API arguments.
+ * @param  string          $action    The type of information being requested from the Plugin Installation API.
+ * @param  object          $args      Plugin API arguments.
  *
  * @return object
  */
@@ -80,6 +80,8 @@ function load_installer_tab_results( $response, $action, $args ) {
 	$get_plugin_details = AdminData\get_stellarwp_plugin_api_data();
 
 	// Set our info portion of the array.
+	// There will likely never be multiple
+	// pages, but it's easy enough to do.
 	$return_args['info'] = array(
 		'page'    => 1,
 		'pages'   => 1,
@@ -89,7 +91,9 @@ function load_installer_tab_results( $response, $action, $args ) {
 	// Now add in all the stuff we got.
 	$return_args['plugins'] = $get_plugin_details;
 
-	// Return them, cast as an object.
+	// Return them, cast as an object, because that's
+	// what this version of wp-list-table wants and who
+	// are we to question that?
 	return (object) $return_args;
 }
 
@@ -103,10 +107,11 @@ function display_installer_tab_table() {
 	// Include the list table global.
 	global $wp_list_table;
 
-	// This is gonna probably be a banner or something.
+	// This is gonna probably be a banner or something later once we
+	// get the final decision from people who make such decisions.
 	echo '<p>' . __( 'Below are plugins from the StellarWP family of brands' ) . '</p>';
 
-	// Now render the table display, wrapped in a form post.
+	// Now render the table display, wrapped in a form post so it works.
 	echo '<form id="plugin-filter" method="post">';
 		$wp_list_table->display();
 	echo '</form>';

@@ -33,6 +33,37 @@ function get_stellarwp_plugin_array( $return_keys = true ) {
 }
 
 /**
+ * Fetch the data for a single plugin from dot org.
+ *
+ * @param  string $plugin_slug  Which slug to look up on dot org.
+ *
+ * @return mixed                Usually an object but that API can be finicky.
+ */
+function get_plugin_dot_org_data( $plugin_slug = '' ) {
+
+	// Bail if our slug is missing.
+	if ( empty( $plugin_slug ) ) {
+		return false;
+	}
+
+	// Set the args for looking up a plugin.
+	$set_info_args  = array(
+		'slug'   => sanitize_text_field( $plugin_slug ),
+		'fields' => array(
+			'sections'          => false,
+			'short_description' => true,
+			'icons'             => true,
+			'contributors'      => false,
+			'screenshots'       => false,
+			'versions'          => false,
+		),
+	);
+
+	// Try to retrieve the information.
+	return plugins_api( 'plugin_information', $set_info_args );
+}
+
+/**
  * Attempt to get all the data we need.
  *
  * @return array
@@ -57,6 +88,11 @@ function get_stellarwp_plugin_api_data() {
 
 	// No cache'd version, so begin with my slugs.
 	$get_slugs  = get_stellarwp_plugin_array();
+
+	// Bail if there are no slugs in the array.
+	if ( empty( $get_slugs ) ) {
+		return false;
+	}
 
 	// Set an empty for the return.
 	$set_return = array();
@@ -88,33 +124,3 @@ function get_stellarwp_plugin_api_data() {
 	return $set_return;
 }
 
-/**
- * Fetch the data for a single plugin from dot org.
- *
- * @param  string $plugin_slug  Which slug to look up on dot org.
- *
- * @return mixed
- */
-function get_plugin_dot_org_data( $plugin_slug = '' ) {
-
-	// Bail if our slug is missing.
-	if ( empty( $plugin_slug ) ) {
-		return false;
-	}
-
-	// Set the args for looking up a plugin.
-	$set_info_args  = array(
-		'slug'   => sanitize_text_field( $plugin_slug ),
-		'fields' => array(
-			'sections'          => false,
-			'short_description' => true,
-			'icons'             => true,
-			'contributors'      => false,
-			'screenshots'       => false,
-			'versions'          => false,
-		),
-	);
-
-	// Try to retrieve the information.
-	return plugins_api( 'plugin_information', $set_info_args );
-}
