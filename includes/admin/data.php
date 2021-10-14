@@ -50,52 +50,50 @@ function get_stellarwp_plugin_api_data() {
 	// Attempt to get the reviews from the cache.
 	$cached_dataset = get_transient( $ky );
 
-	// If we have none, do the things.
-	if ( false === $cached_dataset ) {
-
-		// Get my slugs.
-		$get_slugs  = get_stellarwp_plugin_array();
-
-		// Set an empty for the return.
-		$set_return = array();
-
-		// Loop and test.
-		foreach ( $get_slugs as $single_slug ) {
-
-			// Attempt to get the single data.
-			$fetch_data = get_plugin_dot_org_data( $single_slug );
-
-			// Skip if we don't have it.
-			if ( empty( $fetch_data ) || is_wp_error( $fetch_data ) ) {
-				continue;
-			}
-
-			// Now add the results into the larger array.
-			$set_return[] = (array) $fetch_data;
-		}
-
-		// Bail if there are no items in the array.
-		if ( empty( $set_return ) ) {
-			return false;
-		}
-
-		// Set our transient with our data.
-		set_transient( $ky, $set_return, HOUR_IN_SECONDS );
-
-		// And change the variable to do the things.
-		$cached_dataset = $set_return;
+	// Return the cached version if we have it.
+	if ( false !== $cached_dataset ) {
+		return $cached_dataset;
 	}
 
+	// No cache'd version, so begin with my slugs.
+	$get_slugs  = get_stellarwp_plugin_array();
+
+	// Set an empty for the return.
+	$set_return = array();
+
+	// Loop and test.
+	foreach ( $get_slugs as $single_slug ) {
+
+		// Attempt to get the single data.
+		$fetch_data = get_plugin_dot_org_data( $single_slug );
+
+		// Skip if we don't have it.
+		if ( empty( $fetch_data ) || is_wp_error( $fetch_data ) ) {
+			continue;
+		}
+
+		// Now add the results into the larger array.
+		$set_return[] = (array) $fetch_data;
+	}
+
+	// Bail if there are no items in the array.
+	if ( empty( $set_return ) ) {
+		return false;
+	}
+
+	// Set our transient with our data.
+	set_transient( $ky, $set_return, HOUR_IN_SECONDS );
+
 	// Return the dataset.
-	return $cached_dataset;
+	return $set_return;
 }
 
 /**
- * Get all the info for the plugins we wanna show.
+ * Fetch the data for a single plugin from dot org.
  *
- * @param  boolean $return_keys  Whether to return just the keys.
+ * @param  string $plugin_slug  Which slug to look up on dot org.
  *
- * @return array
+ * @return mixed
  */
 function get_plugin_dot_org_data( $plugin_slug = '' ) {
 
@@ -106,7 +104,7 @@ function get_plugin_dot_org_data( $plugin_slug = '' ) {
 
 	// Set the args for looking up a plugin.
 	$set_info_args  = array(
-		'slug'   => $plugin_slug,
+		'slug'   => sanitize_text_field( $plugin_slug ),
 		'fields' => array(
 			'sections'          => false,
 			'short_description' => true,
