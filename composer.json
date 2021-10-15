@@ -1,0 +1,26 @@
+{
+    "name": "stellarwp/plugin-installer",
+    "description": "A user-friendly interface for installing plugins from StellarWP",
+    "type": "wordpress-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "StellarWP",
+            "email": "support@stellarwp.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Stellarwp\\PluginInstaller\\": "src/"
+        }
+    },
+    "require-dev": {
+        "wp-coding-standards/wpcs": "^2.3",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
+        "phpcompatibility/phpcompatibility-wp": "^2.1"
+    },
+    "scripts": {
+        "fix:standards": "/vendor/bin/phpcbf",
+        "test:standards": "./vendor/bin/phpcs"
+    }
+}
