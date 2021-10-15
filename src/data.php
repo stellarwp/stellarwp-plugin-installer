@@ -10,17 +10,21 @@ use StellarWP\PluginInstaller as Core;
 /**
  * Get all the info for the plugins we wanna show.
  *
+ * @param boolean $return_keys  Whether to return just the keys.
+ *
  * @return array The array of plugin data.
  */
-function get_stellarwp_plugin_array() {
+function get_stellarwp_plugin_array( $return_keys = true ) {
 
 	// Set our array: Key is the plugin slug on WP.org, value is the name of the plugin.
-	return array_keys( apply_filters( Core\HOOK_PREFIX . 'suggested_plugins', [
+	$set_plugin_slugs = apply_filters( Core\HOOK_PREFIX . 'suggested_plugins', [
 		'give'                => __( 'GiveWP', 'stellarwp-plugin-installer' ),
 		'the-events-calendar' => __( 'The Events Calendar', 'stellarwp-plugin-installer' ),
 		'event-tickets'       => __( 'Event Tickets', 'stellarwp-plugin-installer' ),
 		'kadence-blocks'      => __( 'Kadence Blocks', 'stellarwp-plugin-installer' ),
-	] ) );
+	] );
+
+	return false !== $return_keys ? array_keys( $set_plugin_slugs) : $set_plugin_slugs;
 }
 
 /**
@@ -78,7 +82,7 @@ function get_stellarwp_plugin_api_data() {
 	}
 
 	// No cache'd version, so begin with the slugs.
-	$get_slugs = get_stellarwp_plugin_array();
+	$get_slugs = get_stellarwp_plugin_array( true );
 
 	// Bail if there are no slugs in the array.
 	if ( empty( $get_slugs ) ) {
