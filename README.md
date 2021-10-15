@@ -10,10 +10,10 @@ In your composer.json, add the following (you may already have a repositories ar
 
 ```json
 "repositories": [
-	{
-		"type": "vcs",
-		"url": "git@github.com:stellarwp/stellarwp-plugin-installer.git"
-	}
+ {
+    "type": "vcs",
+    "url": "git@github.com:stellarwp/stellarwp-plugin-installer.git"
+  }
 ]
 ```
 
