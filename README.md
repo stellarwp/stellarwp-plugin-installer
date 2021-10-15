@@ -19,4 +19,4 @@ In your composer.json, add the following (you may already have a repositories ar
 
 ## Available filters
 
-`stellar_wp_plugin_installer_suggested_plugins` can be used to modify the recommended plugins.
+`swp_installer_suggested_plugins` can be used to modify the recommended plugins.

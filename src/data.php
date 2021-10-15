@@ -5,6 +5,8 @@
 
 namespace StellarWP\PluginInstaller\Data;
 
+use StellarWP\PluginInstaller as Core;
+
 /**
  * Get all the info for the plugins we wanna show.
  *
@@ -13,7 +15,7 @@ namespace StellarWP\PluginInstaller\Data;
 function get_stellarwp_plugin_array() {
 
 	// Set our array: Key is the plugin slug on WP.org, value is the name of the plugin.
-	return array_keys( apply_filters( 'stellar_wp_plugin_installer_suggested_plugins', [
+	return array_keys( apply_filters( Core\HOOK_PREFIX . 'suggested_plugins', [
 		'give'                => __( 'GiveWP', 'stellarwp-plugin-installer' ),
 		'the-events-calendar' => __( 'The Events Calendar', 'stellarwp-plugin-installer' ),
 		'event-tickets'       => __( 'Event Tickets', 'stellarwp-plugin-installer' ),
@@ -60,7 +62,7 @@ function get_plugin_dot_org_data( $plugin_slug = '' ) {
 function get_stellarwp_plugin_api_data() {
 
 	// Set the key to use in our transient.
-	$ky = 'stellarwp_plugin_installer_plugin_api_data';
+	$ky = Core\CACHE_PREFIX . 'plugin_api_data';
 
 	// If we don't want the cache'd version, delete the transient first.
 	if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
