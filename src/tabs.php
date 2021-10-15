@@ -58,7 +58,7 @@ function load_installer_tab_results( $response, $action, $args ) {
 	}
 
 	// Get our requested plugins.
-	$get_plugin_details = Data\get_stellarwp_plugin_api_data();
+	$get_plugin_details = (array) Data\get_stellarwp_plugin_api_data();
 
 	// Set our info portion of the array.
 	$return_args['info'] = [
