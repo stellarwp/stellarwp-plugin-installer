@@ -1,3 +1,9 @@
+# ignore node dependency directories
+node_modules/
+
+# ignore composer dependency directories
+vendor/
+
 # ignore log files and databases
 *.log
 *.sql
@@ -11,6 +17,10 @@
 
 phpcs.xml
 phpunit.xml
+package-lock.json
 Thumbs.db
+wp-cli.local.yml
+dist
+release
 
-/vendor/
+_notes.txt
