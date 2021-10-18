@@ -19,6 +19,7 @@ function get_stellarwp_plugin_array( $return_keys = true ) {
 	// Set our array: Key is the plugin slug on WP.org, value is the name of the plugin.
 	$set_plugin_args = apply_filters( Core\HOOK_PREFIX . 'suggested_plugins', [
 		'give'                => __( 'GiveWP', 'stellarwp-plugin-installer' ),
+		'restrict-content'    => __( 'Restrict Content - Memberships', 'stellarwp-plugin-installer' ),
 		'the-events-calendar' => __( 'The Events Calendar', 'stellarwp-plugin-installer' ),
 		'event-tickets'       => __( 'Event Tickets', 'stellarwp-plugin-installer' ),
 		'kadence-blocks'      => __( 'Kadence Blocks', 'stellarwp-plugin-installer' ),
