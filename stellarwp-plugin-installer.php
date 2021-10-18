@@ -2,51 +2,26 @@
 /**
  * Plugin Name: StellarWP Plugin Installer
  * Plugin URI:  https://stellarwp.com/
- * Description: A user-friendly interface for installing plugins from StellarWP
+ * Description: Show the free plugins from StellarWP brands as recommended plugins on the Add New Plugin screen.
  * Version:     0.0.1-dev
- * Author:      Andrew Norcross
- * Author URI:  https://github.com/norcross/
+ * Author:      Stellar WP
+ * Author URI:  https://stellarwp.com/
  * Text Domain: stellarwp-plugin-installer
  * Domain Path: /languages
  * License:     MIT
- * License URI: https://opensource.org/licenses/MIT
- *
- * @package StellarWPInstaller
  */
+
+// To update plugins shown, modify the array in get_stellarwp_plugin_array();
 
 // Call our namepsace.
 namespace StellarWP\PluginInstaller;
 
 // Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) { exit; } // phpcs:ignore
 
-// Define our version.
-define( __NAMESPACE__ . '\VERS', '0.0.1-dev' );
-
-// Plugin Folder URL.
-define( __NAMESPACE__ . '\URL', plugin_dir_url( __FILE__ ) );
-
-// Plugin root file.
-define( __NAMESPACE__ . '\FILE', __FILE__ );
-
-// Plugin root file.
-define( __NAMESPACE__ . '\PLUGIN', plugin_basename( __FILE__ ) );
-
-// Define the various prefixes we use.
 define( __NAMESPACE__ . '\CACHE_PREFIX', 'swp_pi_cache_' );
 define( __NAMESPACE__ . '\HOOK_PREFIX', 'swp_installer_' );
 
-// And load our files.
-stellarwp_plugin_installer_file_load();
-
-/**
- * The function that loads the files.
- *
- * @return void
- */
-function stellarwp_plugin_installer_file_load() {
-
-	// Pull in the individual admin pieces.
-	require_once __DIR__ . '/includes/data.php';
-	require_once __DIR__ . '/includes/tabs.php';
-}
+// Pull in the individual admin pieces.
+require_once __DIR__ . '/src/data.php';
+require_once __DIR__ . '/src/tabs.php';
