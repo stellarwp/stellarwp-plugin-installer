@@ -124,3 +124,21 @@ function get_stellarwp_plugin_api_data() {
 	// Return the dataset.
 	return $set_return;
 }
+
+/**
+ * Get the individual pieces for our Kadence theme banner.
+ *
+ * @return array The array of data.
+ */
+function get_kadence_theme_args() {
+
+	// Construct the theme link in the admin.
+	$set_theme_link = add_query_arg( 'theme', 'kadence', admin_url( 'theme-install.php' ) );
+
+	// These are the individual data pieces we have.
+	return [
+		'link'   => $set_theme_link,
+		'banner' => '',
+		'text'   => __( 'Get the Kadence Theme today', 'stellarwp-plugin-installer' ),
+	];
+}
