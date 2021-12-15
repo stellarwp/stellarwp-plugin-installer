@@ -19,8 +19,13 @@ namespace StellarWP\PluginInstaller;
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) { exit; } // phpcs:ignore
 
+define( __NAMESPACE__ . '\URL', plugin_dir_url( __FILE__ ) );
+define( __NAMESPACE__ . '\ASSETS_URL', URL . 'assets' );
+
 define( __NAMESPACE__ . '\CACHE_PREFIX', 'swp_pi_cache_' );
 define( __NAMESPACE__ . '\HOOK_PREFIX', 'swp_installer_' );
+
+define( __NAMESPACE__ . '\TAB_SLUG', 'stellarwp' );
 
 // Pull in the individual admin pieces.
 require_once __DIR__ . '/src/data.php';

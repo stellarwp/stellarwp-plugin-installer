@@ -8,6 +8,20 @@ namespace StellarWP\PluginInstaller\Data;
 use StellarWP\PluginInstaller as Core;
 
 /**
+ * Get the various items for the Kadence theme.
+ *
+ * @return array
+ */
+function get_kadence_theme_info() {
+
+	return [
+		'banner' => Core\ASSETS_URL . '/kadence-banner.png',
+		'link'   => admin_url( 'theme-install.php?theme=kadence' ),
+		'text'   => __( 'Click here to learn more about the Kadence theme.', 'stellarwp-plugin-installer' )
+	];
+}
+
+/**
  * Get all the info for the plugins we wanna show.
  *
  * @param boolean $return_keys  Whether to return just the keys.
