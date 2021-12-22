@@ -3,15 +3,13 @@
  * Plugin Name: StellarWP Plugin Installer
  * Plugin URI:  https://stellarwp.com/
  * Description: Show the free plugins from StellarWP brands as recommended plugins on the Add New Plugin screen.
- * Version:     0.0.1-dev
+ * Version:     1.0.0
  * Author:      Stellar WP
  * Author URI:  https://stellarwp.com/
  * Text Domain: stellarwp-plugin-installer
  * Domain Path: /languages
  * License:     MIT
  */
-
-// To update plugins shown, modify the array in get_stellarwp_plugin_array();
 
 // Call our namepsace.
 namespace StellarWP\PluginInstaller;
