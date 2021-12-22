@@ -112,9 +112,12 @@ function display_installer_tab_table() {
 	// Include the list table global.
 	global $wp_list_table;
 
+	// Get our Kadence info.
+	$kadence_data   = Data\get_kadence_theme_info();
+
 	// Wrap the Kadence banner in a div.
 	echo '<p class="stellarwp-kadence-banner-wrap">';
-		echo '<a class="stellarwp-kadence-banner-link" href="' . admin_url( 'theme-install.php?theme=kadence' ) . '"><img src="' . Core\ASSETS_URL . '/kadence-banner.png"></a>';
+		echo '<a title="' . esc_attr( $kadence_data['text'] ) . '" class="stellarwp-kadence-banner-link" href="' . esc_url( $kadence_data['link'] ) . '"><img src="' . esc_url( $kadence_data['banner'] ) . '"></a>';
 	echo '</p>';
 
 	// Now render the table display, wrapped in a form post so it works.
