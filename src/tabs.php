@@ -113,7 +113,7 @@ function display_installer_tab_table() {
 	global $wp_list_table;
 
 	// Get our Kadence info.
-	$kadence_data   = Data\get_kadence_theme_info();
+	$kadence_data = Data\get_kadence_theme_info();
 
 	// Wrap the Kadence banner in a div.
 	echo '<p class="stellarwp-kadence-banner-wrap">';
