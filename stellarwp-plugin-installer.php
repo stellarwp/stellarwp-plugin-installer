@@ -12,7 +12,7 @@
  */
 
 // Call our namepsace.
-namespace StellarWP\PluginInstaller;
+namespace StellarWP\StellarWPPluginInstaller;
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) { exit; } // phpcs:ignore
