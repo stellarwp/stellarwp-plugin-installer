@@ -17,7 +17,7 @@ function get_kadence_theme_info() {
 	return [
 		'banner' => Core\ASSETS_URL . '/kadence-theme-banner.jpg',
 		'link'   => admin_url( 'theme-install.php?theme=kadence' ),
-		'text'   => __( 'Click here to learn more about the Kadence theme.', 'stellarwp-plugin-installer' )
+		'text'   => __( 'Click here to learn more about the Kadence theme.', 'stellarwp-plugin-installer' ),
 	];
 }
 
