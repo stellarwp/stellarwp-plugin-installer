@@ -1,5 +1,5 @@
 {
-    "name": "stellarwp/plugin-installer",
+    "name": "stellarwp/stellarwp-plugin-installer",
     "description": "A user-friendly interface for installing plugins from StellarWP",
     "type": "wordpress-plugin",
     "license": "MIT",
@@ -11,7 +11,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Stellarwp\\StellarWPPluginInstaller\\": "src/"
+            "Stellarwp\\PluginInstaller\\": "src/"
         }
     },
     "require-dev": {
